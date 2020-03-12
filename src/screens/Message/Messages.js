@@ -7,18 +7,12 @@ const View = styled.View`
   align-items: center;
 `;
 
-const Button = styled.TouchableOpacity`
-  width: 100px;
-  height: 100px;
-  background-color: green;
-`;
-
 const Text = styled.Text``;
 
-export default ({navigation}) => {
+export default () => {
   return (
     <View>
-      <Text>Home (Feed)</Text>
+      <Text>Messages</Text>
     </View>
   );
 };

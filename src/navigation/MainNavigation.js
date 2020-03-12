@@ -1,3 +1,4 @@
+import MessageNavigation from './MessageNavigation';
 import PhotoNavigation from './PhotoNavigation';
 import React from 'react';
 import TabNavigation from './TabNavigation';
@@ -12,6 +13,7 @@ const MainNavigation = () => (
     headerMode={'none'}>
     <Stack.Screen name="TabNavigation" component={TabNavigation} />
     <Stack.Screen name="PhotoNavigation" component={PhotoNavigation} />
+    <Stack.Screen name="MessageNavigation" component={MessageNavigation} />
   </Stack.Navigator>
 );
 
