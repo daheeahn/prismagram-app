@@ -13,8 +13,7 @@ const Stack = createStackNavigator();
 // };
 
 export default () => {
-  // const isLoggedIn = useIsLoggedIn();
-  const isLoggedIn = true;
+  const isLoggedIn = useIsLoggedIn();
   // 전체 어플리케이션 빌드하고 필요할 때마다 쓰는거야. 컴포넌트화 할 예정.
 
   return (
