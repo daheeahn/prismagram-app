@@ -1,14 +1,14 @@
-import Home from '../screens/Home';
-import Notifications from '../screens/Notifications';
-import Profile from '../screens/Profile';
+import Home from '../screens/Tabs/Home';
+import Notifications from '../screens/Tabs/Notifications';
+import Profile from '../screens/Tabs/Profile';
 import React from 'react';
-import Search from '../screens/Search';
+import Search from '../screens/Tabs/Search';
 import {View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigation = () => (
+const TabNavigation = ({navigation}) => (
   <Tab.Navigator initialRouteName="Home" headerMode={'none'}>
     <Tab.Screen
       name="Home"
@@ -22,8 +22,9 @@ const TabNavigation = () => (
       name="Add"
       component={View}
       listeners={{
-        tabPress: () => {
-          console.log('hi');
+        tabPress: e => {
+          e.preventDefault(); // 이렇게 막은 다음에
+          navigation.navigate('PhotoNavigation'); // navigate 한다!
         },
       }}
     />

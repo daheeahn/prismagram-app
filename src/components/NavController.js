@@ -1,4 +1,5 @@
 import AuthNavigation from '../navigation/AuthNavigation';
+import MainNavigation from '../navigation/MainNavigation';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import TabNavigation from '../navigation/TabNavigation';
@@ -18,7 +19,7 @@ export default () => {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <TabNavigation /> : <AuthNavigation />}
+      {isLoggedIn ? <MainNavigation /> : <AuthNavigation />}
     </NavigationContainer>
   );
 };
