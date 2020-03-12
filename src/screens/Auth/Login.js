@@ -1,13 +1,30 @@
-import {Text, View} from 'react-native';
-
+import AuthButton from '../../components/AuthButton';
+import AuthInput from '../../components/AuthInput';
 import React from 'react';
+import styled from 'styled-components';
+import useInput from '../../hooks/useInput';
 
-const Login = () => {
+const View = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export default () => {
+  const emailInput = useInput('');
+  const handleLogin = () => {
+    // 유효성 검증
+  };
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Login</Text>
+    <View>
+      <AuthInput
+        {...emailInput}
+        placeholder={'id'}
+        keyboardType={'email-address'}
+        autoCapitalize={'none'}
+      />
+      <AuthButton text={'Log In'} onPress={() => {}} />
     </View>
   );
 };
-
-export default Login;

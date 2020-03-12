@@ -15,7 +15,7 @@ import NavController from './src/components/NavController';
 import {ThemeProvider} from 'styled-components';
 import options from './apollo';
 import {persistCache} from 'apollo-cache-persist';
-import styles from './styles';
+import styles from './src/utils/styles';
 
 const App = ({navigation}) => {
   const [loaded, setLoaded] = useState(false);
