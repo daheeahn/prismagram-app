@@ -5,8 +5,8 @@ import {useAsyncStorage} from '@react-native-community/async-storage';
 // 변수를 포함하는 object 라고 생각하면 쉬움
 export const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(null); // local storage에 접근해서 유저 로그인 여부를 알아내기 위함
+export const AuthProvider = ({isLoggedIn: isLoggedInProp, children}) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(isLoggedInProp); // local storage에 접근해서 유저 로그인 여부를 알아내기 위함
   const {getItem, setItem} = useAsyncStorage('isLoggedIn');
 
   const logUserIn = async () => {

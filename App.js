@@ -23,6 +23,8 @@ const App = ({navigation}) => {
   // null 체크안함 / false 체크했는데 유저가 로그인 안한거 / true ~
   const {getItem, setItem} = useAsyncStorage('isLoggedIn');
 
+  const [isLoggedIn, setIsLoggedIn] = useState(null);
+
   const preLoad = async () => {
     // 비동기라 다시 할거라고? TODO:
     try {
@@ -37,6 +39,13 @@ const App = ({navigation}) => {
         ...options,
       });
 
+      const isLoggedInFS = await getItem();
+      if (isLoggedInFS === null || isLoggedInFS === 'false') {
+        setIsLoggedIn(false);
+      } else {
+        setIsLoggedIn(true);
+      }
+
       setLoaded(true);
       setClient(client);
     } catch (error) {
@@ -49,10 +58,11 @@ const App = ({navigation}) => {
     preLoad();
   }, []);
 
-  return loaded && client ? ( // null이 아니지 false가 아닌건 아니야! 주의하기
+  return loaded && client && isLoggedIn !== null ? (
+    // null이 아니지 false가 아닌건 아니야! 주의하기
     <ApolloProvider client={client}>
       <ThemeProvider theme={styles}>
-        <AuthProvider>
+        <AuthProvider isLoggedIn={isLoggedIn}>
           <NavController />
         </AuthProvider>
       </ThemeProvider>
