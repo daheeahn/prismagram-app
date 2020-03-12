@@ -35,7 +35,7 @@ const App = ({navigation}) => {
 
       const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
 
-      if (isLoggedIn === null || isLoggedIn === false) {
+      if (isLoggedIn === null || isLoggedIn === 'false') {
         // TODO: parse 해야되는데
         setIsLoggedIn(false);
       } else {
@@ -47,6 +47,24 @@ const App = ({navigation}) => {
     } catch (error) {
       Alert.alert('error!');
       console.log(error);
+    }
+  };
+
+  const logUserIn = async () => {
+    try {
+      await AsyncStorage.setItem('isLoggedIn', 'true');
+      setIsLoggedIn(true);
+    } catch (e) {
+      console.log('logUserIn', e);
+    }
+  };
+
+  const logUserOut = async () => {
+    try {
+      await AsyncStorage.setItem('isLoggedIn', 'false');
+      setIsLoggedIn(false);
+    } catch (e) {
+      console.log('logUserOut', e);
     }
   };
 
@@ -68,7 +86,17 @@ const App = ({navigation}) => {
             console.log(event);
           }}
         /> */}
-        <Text>{isLoggedIn ? "I'm in" : "I'm logged out"}</Text>
+        <View style={{justifyContent: 'center', alignItems: 'center', flex: 1}}>
+          {isLoggedIn ? (
+            <TouchableOpacity onPress={logUserOut}>
+              <Text>Log Out</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={logUserIn}>
+              <Text>Log In</Text>
+            </TouchableOpacity>
+          )}
+        </View>
       </ThemeProvider>
     </ApolloProvider>
   ) : (
