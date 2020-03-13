@@ -1,7 +1,7 @@
-import {Text, TouchableOpacity} from 'react-native';
-
 import Home from '../../screens/Tabs/Home';
+import {Image} from 'react-native';
 import MessageLink from '../../components/MessageLink';
+import NavIcon from '../../components/NavIcon';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -15,8 +15,10 @@ const HomeStackFactory = ({navigation}) => (
     <Stack.Screen
       name="Home"
       component={Home}
+      headerTitle
       options={{
         headerRight: () => <MessageLink />,
+        headerTitle: <NavIcon name={'logo-instagram'} size={36} />,
       }}
     />
   </Stack.Navigator>

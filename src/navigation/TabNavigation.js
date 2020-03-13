@@ -1,9 +1,12 @@
+import {Platform, Text, View} from 'react-native';
+
 import HomeStackFactory from './TabsStackFactory/HomeStackFactory';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import NavIcon from '../components/NavIcon';
 import NotiStackFactory from './TabsStackFactory/NotiStackFactory';
 import ProfileStackFactory from './TabsStackFactory/ProfileStackFactory';
 import React from 'react';
 import SearchStackFactory from './TabsStackFactory/SearchStackFactory';
-import {View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -25,12 +28,38 @@ const Stack = createStackNavigator();
 // };
 
 const TabNavigation = ({navigation}) => (
-  <Tab.Navigator initialRouteName="HomeStackFactory" headerMode={'none'}>
-    <Tab.Screen name="HomeStackFactory" component={HomeStackFactory} />
-    <Tab.Screen name="SearchStackFactory" component={SearchStackFactory} />
+  <Tab.Navigator
+    initialRouteName="HomeStackFactory"
+    headerMode={'none'}
+    tabBarOptions={{
+      showLabel: false,
+    }}>
+    <Tab.Screen
+      name="HomeStackFactory"
+      component={HomeStackFactory}
+      options={{
+        tabBarIcon: () => (
+          <NavIcon name={Platform === 'android' ? 'md-home' : 'ios-home'} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="SearchStackFactory"
+      component={SearchStackFactory}
+      options={{
+        tabBarIcon: () => (
+          <NavIcon name={Platform === 'android' ? 'md-search' : 'ios-search'} />
+        ),
+      }}
+    />
     <Tab.Screen
       name="Add"
       component={View}
+      options={{
+        tabBarIcon: () => (
+          <NavIcon name={Platform === 'android' ? 'md-add' : 'ios-add'} />
+        ),
+      }}
       listeners={{
         tabPress: e => {
           e.preventDefault(); // 이렇게 막은 다음에
@@ -38,8 +67,24 @@ const TabNavigation = ({navigation}) => (
         },
       }}
     />
-    <Tab.Screen name="NotiStackFactory" component={NotiStackFactory} />
-    <Tab.Screen name="ProfileStackFactory" component={ProfileStackFactory} />
+    <Tab.Screen
+      name="NotiStackFactory"
+      component={NotiStackFactory}
+      options={{
+        tabBarIcon: () => (
+          <NavIcon name={Platform === 'android' ? 'md-heart' : 'ios-heart'} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="ProfileStackFactory"
+      component={ProfileStackFactory}
+      options={{
+        tabBarIcon: () => (
+          <NavIcon name={Platform === 'android' ? 'md-person' : 'ios-person'} />
+        ),
+      }}
+    />
   </Tab.Navigator>
 );
 

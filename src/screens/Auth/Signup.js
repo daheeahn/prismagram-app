@@ -168,8 +168,7 @@ export default ({navigation, route}) => {
             onPress={fbLogin}
             text={'Connect Fabebook'}
           />
-
-          <LoginButton
+          {/* <LoginButton
             // style={{width: constants.width / 1.7, backgroundColor: 'pink'}}
             onLoginFinished={(error, result) => {
               console.log('result by LoginButton', result);
@@ -184,7 +183,7 @@ export default ({navigation, route}) => {
               }
             }}
             onLogoutFinished={() => console.log('logout.')}
-          />
+          /> */}
         </FBContainer>
       </View>
     </TouchableWithoutFeedback>
