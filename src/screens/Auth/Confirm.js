@@ -38,6 +38,7 @@ export default ({navigation, route}) => {
       const {
         data: {confirmSecret},
       } = await confirmSecretMutation();
+
       if (confirmSecret !== '' || confirmSecret !== false) {
         console.log('confirmSecret', confirmSecret);
         logIn(confirmSecret);

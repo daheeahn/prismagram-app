@@ -14,8 +14,8 @@ const View = styled.View`
   align-items: center;
 `;
 
-export default ({navigation}) => {
-  const emailInput = useInput('');
+export default ({navigation, route}) => {
+  const emailInput = useInput(route?.params?.email || '');
   const [loading, setLoading] = useState(false);
   const [requestSecretMutation] = useMutation(LOG_IN, {
     variables: {email: emailInput.value},

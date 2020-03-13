@@ -26,6 +26,7 @@ const App = ({navigation}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const preLoad = async () => {
+    // await AsyncStorage.clear();
     // 비동기라 다시 할거라고? TODO:
     try {
       // 항상 이미지같은건 preload하도록 해!
