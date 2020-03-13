@@ -1,6 +1,17 @@
-import {AccessToken, LoginButton, LoginManager} from 'react-native-fbsdk';
-import {Alert, Keyboard, TouchableWithoutFeedback} from 'react-native';
-import React, {useState} from 'react';
+import {
+  AccessToken,
+  GraphRequest,
+  GraphRequestManager,
+  LoginButton,
+  LoginManager,
+} from 'react-native-fbsdk';
+import {
+  Alert,
+  AsyncStorage,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 
 import AuthButton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
@@ -29,7 +40,7 @@ export default ({navigation, route}) => {
   const usernameInput = useInput('');
   const emailInput = useInput(route?.params?.email || '');
   const [loading, setLoading] = useState(false);
-  const createAccountMutation = useMutation(CREATE_ACCOUNT, {
+  const [createAccountMutation] = useMutation(CREATE_ACCOUNT, {
     variables: {
       username: usernameInput.value,
       email: emailInput.value,
@@ -75,27 +86,54 @@ export default ({navigation, route}) => {
     }
   };
 
+  const _responseInfoCallback = (error, result) => {
+    if (error) {
+      console.log('Error fetching data: ', error);
+    } else {
+      const {id, name, last_name, first_name} = result;
+      console.log('Success fetching data: ', result);
+      emailInput.setValue('deg9810@gmail.com');
+      fNameInput.setValue(first_name);
+      lNameInput.setValue(last_name);
+      // usernameInput.setValue(name); // username은 직접 입력하도록 둔다.
+    }
+  };
+
   const fbLogin = async () => {
     try {
-      const result = await LoginManager.logInWithPermissions([
-        'public_profile',
-        'email',
-        ,
-      ]);
-      console.log('fbLogin result', result);
+      setLoading(true);
 
-      if (result.isCancelled) {
+      const {
+        isCancelled,
+        grantedPermissions,
+      } = await LoginManager.logInWithPermissions(['public_profile', 'email']);
+
+      if (isCancelled) {
         console.log('Login cancelled');
       } else {
         console.log(
-          'Login success with permissions: ' +
-            result.grantedPermissions.toString(),
+          'Login success with permissions',
+          grantedPermissions.toString(),
         );
+        // const {accessToken} = await AccessToken.getCurrentAccessToken();
+        // console.log('accessToken', accessToken);
+
+        // email은 왜 안되지? 맨첨에 email이 없어서 그른가,,, 뭐지 했는데,,,,
+        const infoRequest = new GraphRequest(
+          '/me?fields=id,name,email,last_name,first_name', // accessToken 없어도 잘된다.
+          null,
+          _responseInfoCallback,
+        );
+        // Start the graph request.
+        new GraphRequestManager().addRequest(infoRequest).start();
       }
+      setLoading(false);
     } catch (error) {
       console.log('Login fail with error: ' + error);
     }
   };
+
+  useEffect(() => {}, []);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -131,7 +169,7 @@ export default ({navigation, route}) => {
             text={'Connect Fabebook'}
           />
 
-          {/* <LoginButton
+          <LoginButton
             // style={{width: constants.width / 1.7, backgroundColor: 'pink'}}
             onLoginFinished={(error, result) => {
               console.log('result by LoginButton', result);
@@ -146,7 +184,7 @@ export default ({navigation, route}) => {
               }
             }}
             onLogoutFinished={() => console.log('logout.')}
-          /> */}
+          />
         </FBContainer>
       </View>
     </TouchableWithoutFeedback>
