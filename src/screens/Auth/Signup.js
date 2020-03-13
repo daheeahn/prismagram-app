@@ -1,9 +1,11 @@
+import {AccessToken, LoginButton, LoginManager} from 'react-native-fbsdk';
 import {Alert, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import React, {useState} from 'react';
 
 import AuthButton from '../../components/AuthButton';
 import AuthInput from '../../components/AuthInput';
 import {CREATE_ACCOUNT} from './AuthQueries';
+import constants from '../../utils/constants';
 import styled from 'styled-components';
 import useInput from '../../hooks/useInput';
 import {useMutation} from 'react-apollo-hooks';
@@ -12,6 +14,13 @@ const View = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+`;
+
+const FBContainer = styled.View`
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top-width: 1px;
+  border-top-color: ${props => props.theme.lightGrey};
 `;
 
 export default ({navigation, route}) => {
@@ -66,6 +75,28 @@ export default ({navigation, route}) => {
     }
   };
 
+  const fbLogin = async () => {
+    try {
+      const result = await LoginManager.logInWithPermissions([
+        'public_profile',
+        'email',
+        ,
+      ]);
+      console.log('fbLogin result', result);
+
+      if (result.isCancelled) {
+        console.log('Login cancelled');
+      } else {
+        console.log(
+          'Login success with permissions: ' +
+            result.grantedPermissions.toString(),
+        );
+      }
+    } catch (error) {
+      console.log('Login fail with error: ' + error);
+    }
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View>
@@ -92,6 +123,31 @@ export default ({navigation, route}) => {
           returnKeyType={'send'}
         />
         <AuthButton loading={loading} text={'Sign Up'} onPress={handleSignup} />
+        <FBContainer>
+          <AuthButton
+            bgColor={'#2D4DA7'}
+            loading={false}
+            onPress={fbLogin}
+            text={'Connect Fabebook'}
+          />
+
+          {/* <LoginButton
+            // style={{width: constants.width / 1.7, backgroundColor: 'pink'}}
+            onLoginFinished={(error, result) => {
+              console.log('result by LoginButton', result);
+              if (error) {
+                console.log('login has error: ' + result.error);
+              } else if (result.isCancelled) {
+                console.log('login is cancelled.');
+              } else {
+                AccessToken.getCurrentAccessToken().then(data => {
+                  console.log(data.accessToken.toString());
+                });
+              }
+            }}
+            onLogoutFinished={() => console.log('logout.')}
+          /> */}
+        </FBContainer>
       </View>
     </TouchableWithoutFeedback>
   );

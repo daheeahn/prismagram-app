@@ -10,7 +10,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
 const AuthNavigation = () => (
-  <Stack.Navigator initialRouteName="Login" headerMode={'none'}>
+  <Stack.Navigator initialRouteName="Signup" headerMode={'none'}>
     <Stack.Screen name="AuthHome" component={AuthHome} />
     <Stack.Screen name="Login" component={Login} />
     <Stack.Screen name="Confirm" component={Confirm} />
