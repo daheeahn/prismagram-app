@@ -8,10 +8,12 @@ export const AuthContext = createContext();
 export const AuthProvider = ({isLoggedIn: isLoggedInProp, children}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(isLoggedInProp); // local storage에 접근해서 유저 로그인 여부를 알아내기 위함
   const {getItem, setItem} = useAsyncStorage('isLoggedIn');
+  const {getItem: getJwtItem, setItem: setJwtItem} = useAsyncStorage('jwt');
 
-  const logUserIn = async () => {
+  const logUserIn = async token => {
     try {
       await setItem('true');
+      await setJwtItem(token);
       setIsLoggedIn(true);
     } catch (e) {
       console.log('logUserIn', e);
