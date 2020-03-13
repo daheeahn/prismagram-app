@@ -21,6 +21,9 @@ const AuthInput = ({
   keyboardType = 'default',
   autoCapitalize = 'none',
   onChangeText,
+  returnKeyType = 'done',
+  onEndEditing = () => null,
+  autoCorrect = true,
 }) => {
   return (
     <Container>
@@ -30,6 +33,9 @@ const AuthInput = ({
         value={value}
         autoCapitalize={autoCapitalize}
         onChangeText={onChangeText}
+        returnKeyType={returnKeyType}
+        onEndEditing={onEndEditing}
+        autoCorrect={autoCorrect}
       />
     </Container>
   );
@@ -48,6 +54,9 @@ AuthInput.propTypes = {
   ]),
   autoCapitalize: PropTypes.oneOf(['characters', 'words', 'sentences', 'none']),
   onChangeText: PropTypes.func.isRequired,
+  returnKeyType: PropTypes.oneOf(['done', 'go', 'next', 'search', 'send']),
+  onEndEditing: PropTypes.func,
+  autoCorrect: PropTypes.bool,
 };
 
 export default AuthInput;
