@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 
 import {FEED_QUERY} from './HomeQueries';
 import Loader from '../../components/Loader';
+import Post from '../../components/Post';
 import styled from 'styled-components';
 // import {useQuery} from '@apollo/react-hooks';
 import {useQuery} from 'react-apollo-hooks';
@@ -37,7 +38,11 @@ export default ({navigation}) => {
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={refresh} />
       }>
-      {loading ? <Loader /> : <Text>hi</Text>}
+      {loading ? (
+        <Loader />
+      ) : (
+        data?.seeFeed?.map(post => <Post key={post.id} {...post} />)
+      )}
     </ScrollView>
   );
 };
