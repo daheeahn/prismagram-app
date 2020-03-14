@@ -35,8 +35,21 @@ const App = ({navigation}) => {
         cache,
         storage: AsyncStorage,
       });
+
       const client = new ApolloClient({
         cache,
+        // headers: {
+        //   Authorization: `,
+        // },
+        request: async operation => {
+          // 이 함수가 리턴하는 값은 요청마다 추가도ㅔㅐ. 이함수가 매 요청마다 호출되는거지.
+          // 매 요청을 중간에 가로채는거야.
+          const token = await AsyncStorage.getItem('jwt');
+          return operation.setContext({
+            // 요청마다 이 함수가 실행돼.
+            headers: {Authorization: `Bearer ${token}`},
+          });
+        },
         ...options,
       });
 

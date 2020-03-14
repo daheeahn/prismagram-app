@@ -1,6 +1,9 @@
+import {FEED_QUERY} from './HomeQueries';
 import Loader from '../../components/Loader';
 import React from 'react';
 import styled from 'styled-components';
+// import {useQuery} from '@apollo/react-hooks';
+import {useQuery} from 'react-apollo-hooks';
 
 const View = styled.View`
   flex: 1;
@@ -17,9 +20,11 @@ const Button = styled.TouchableOpacity`
 const Text = styled.Text``;
 
 export default ({navigation}) => {
+  const {data, loading} = useQuery(FEED_QUERY); // persistCache가 설정해둔거래 data는
+  console.log('hi', data, loading);
   return (
     <View>
-      <Loader />
+      {loading && <Loader />}
       {/* <Text>Home (Feed)</Text> */}
     </View>
   );

@@ -15,7 +15,8 @@ const View = styled.View`
 `;
 
 export default ({navigation, route}) => {
-  const emailInput = useInput(route?.params?.email || '');
+  // const emailInput = useInput(route?.params?.email || ''); // TODO:
+  const emailInput = useInput(route?.params?.email || 'deg9810@gmail.com');
   const [loading, setLoading] = useState(false);
   const [requestSecretMutation] = useMutation(LOG_IN, {
     variables: {email: emailInput.value},
