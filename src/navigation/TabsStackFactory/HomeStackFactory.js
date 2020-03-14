@@ -4,6 +4,8 @@ import MessageLink from '../../components/MessageLink';
 import NavIcon from '../../components/NavIcon';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+import {stackStyles} from '../config';
+import styles from '../../utils/styles';
 
 const Stack = createStackNavigator();
 
@@ -11,7 +13,10 @@ const Stack = createStackNavigator();
 const HomeStackFactory = ({navigation}) => (
   <Stack.Navigator
     initialRouteName={'Home'}
-    screenOptions={{headerTitle: 'Home'}}>
+    screenOptions={{
+      headerTitle: 'Home',
+      headerStyle: {...stackStyles},
+    }}>
     <Stack.Screen
       name="Home"
       component={Home}

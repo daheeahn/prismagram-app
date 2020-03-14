@@ -1,3 +1,4 @@
+import Loader from '../../components/Loader';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -18,7 +19,8 @@ const Text = styled.Text``;
 export default ({navigation}) => {
   return (
     <View>
-      <Text>Home (Feed)</Text>
+      <Loader />
+      {/* <Text>Home (Feed)</Text> */}
     </View>
   );
 };

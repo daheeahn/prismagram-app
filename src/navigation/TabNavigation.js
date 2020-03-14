@@ -9,6 +9,7 @@ import React from 'react';
 import SearchStackFactory from './TabsStackFactory/SearchStackFactory';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
+import styles from '../utils/styles';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -33,13 +34,20 @@ const TabNavigation = ({navigation}) => (
     headerMode={'none'}
     tabBarOptions={{
       showLabel: false,
+      style: {
+        // tabBarStyle로 하면 탭 부분만 스타일이 바뀌고 그 아래는 적용이 안됨. 휴대폰 맨 끝 부분.
+        backgroundColor: styles.instaColor,
+      },
     }}>
     <Tab.Screen
       name="HomeStackFactory"
       component={HomeStackFactory}
       options={{
-        tabBarIcon: () => (
-          <NavIcon name={Platform === 'android' ? 'md-home' : 'ios-home'} />
+        tabBarIcon: ({focused}) => (
+          <NavIcon
+            focused={focused}
+            name={Platform === 'android' ? 'md-home' : 'ios-home'}
+          />
         ),
       }}
     />
@@ -47,8 +55,11 @@ const TabNavigation = ({navigation}) => (
       name="SearchStackFactory"
       component={SearchStackFactory}
       options={{
-        tabBarIcon: () => (
-          <NavIcon name={Platform === 'android' ? 'md-search' : 'ios-search'} />
+        tabBarIcon: ({focused}) => (
+          <NavIcon
+            focused={focused}
+            name={Platform === 'android' ? 'md-search' : 'ios-search'}
+          />
         ),
       }}
     />
@@ -56,8 +67,12 @@ const TabNavigation = ({navigation}) => (
       name="Add"
       component={View}
       options={{
-        tabBarIcon: () => (
-          <NavIcon name={Platform === 'android' ? 'md-add' : 'ios-add'} />
+        tabBarIcon: ({focused}) => (
+          <NavIcon
+            focused={focused}
+            size={30}
+            name={Platform === 'android' ? 'md-add' : 'ios-add'}
+          />
         ),
       }}
       listeners={{
@@ -71,8 +86,11 @@ const TabNavigation = ({navigation}) => (
       name="NotiStackFactory"
       component={NotiStackFactory}
       options={{
-        tabBarIcon: () => (
-          <NavIcon name={Platform === 'android' ? 'md-heart' : 'ios-heart'} />
+        tabBarIcon: ({focused}) => (
+          <NavIcon
+            focused={focused}
+            name={Platform === 'android' ? 'md-heart' : 'ios-heart'}
+          />
         ),
       }}
     />
@@ -80,8 +98,11 @@ const TabNavigation = ({navigation}) => (
       name="ProfileStackFactory"
       component={ProfileStackFactory}
       options={{
-        tabBarIcon: () => (
-          <NavIcon name={Platform === 'android' ? 'md-person' : 'ios-person'} />
+        tabBarIcon: ({focused}) => (
+          <NavIcon
+            focused={focused}
+            name={Platform === 'android' ? 'md-person' : 'ios-person'}
+          />
         ),
       }}
     />

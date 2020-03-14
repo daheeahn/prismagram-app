@@ -6,6 +6,7 @@ const styles = {
   red: '#ED4956',
   blue: '#3897f0',
   darkBlue: '#003569',
+  instaColor: '#FAFAFA',
 };
 
 export default styles;

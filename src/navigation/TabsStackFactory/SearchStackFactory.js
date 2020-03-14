@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from '../../screens/Tabs/Search';
 import {createStackNavigator} from '@react-navigation/stack';
+import {stackStyles} from '../config';
 
 const Stack = createStackNavigator();
 
@@ -8,7 +9,7 @@ const Stack = createStackNavigator();
 const SearchStackFactory = () => (
   <Stack.Navigator
     initialRouteName={'Search'}
-    screenOptions={{headerTitle: 'Search'}}>
+    screenOptions={{headerTitle: 'Search', headerStyle: {...stackStyles}}}>
     <Stack.Screen name="Search" component={Search} />
   </Stack.Navigator>
 );
