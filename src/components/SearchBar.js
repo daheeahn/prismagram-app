@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {TextInput} from 'react-native';
 import constants from '../utils/constants';
 import styles from '../utils/styles';
 
-const SearchBar = ({onChangeText, value, onSubmit}) => {
+const SearchBar = ({onChangeText, onSubmit}) => {
+  const [value, setValue] = useState('') // useEffect로 한거라서 Search에서 한번 렌더링 된 후에는 뭐가 안돼. 그래서 여기서 해줘야 하고, Search에서는 안해줘도 됨
+
   return (
     <TextInput
       style={{
@@ -17,7 +19,10 @@ const SearchBar = ({onChangeText, value, onSubmit}) => {
       }}
       placeholderTextColor={styles.darkGrey}
       returnKeyType="search"
-      onChangeText={onChangeText}
+      onChangeText={(text) => {
+        onChangeText(text)
+        setValue(text)
+      }}
       value={value}
       placeholder={'Search'}
       onEndEditing={onSubmit}
@@ -25,9 +30,8 @@ const SearchBar = ({onChangeText, value, onSubmit}) => {
   );
 };
 
-SearchBar.PropTypes = {
-  onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+SearchBar.propTypes = {
+  onChangeText: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 

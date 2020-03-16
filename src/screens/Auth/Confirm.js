@@ -17,7 +17,7 @@ const View = styled.View`
 
 export default ({navigation, route}) => {
   // console.log(route.params.email);
-  const confirmInput = useInput('');
+  const confirmInput = useInput(route.params.requestSecret || '');
   const logIn = useLogIn();
   const [loading, setLoading] = useState(false);
   const [confirmSecretMutation] = useMutation(CONFIRM_SECRET, {

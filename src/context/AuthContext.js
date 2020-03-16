@@ -45,7 +45,7 @@ export const AuthProvider = ({isLoggedIn: isLoggedInProp, children}) => {
 
 export const useIsLoggedIn = () => {
   const {isLoggedIn} = useContext(AuthContext);
-  console.log(isLoggedIn);
+  console.log('isLoggedIn', isLoggedIn);
   return isLoggedIn;
 };
 

@@ -40,10 +40,10 @@ export default ({navigation, route}) => {
       const {
         data: {requestSecret},
       } = await requestSecretMutation();
-
+      
       if (requestSecret) {
         Alert.alert('Check your email');
-        navigation.navigate('Confirm', {email: value});
+        navigation.navigate('Confirm', {email: value, requestSecret});
       } else {
         Alert.alert('Account not found');
         navigation.navigate('Signup', {email: value});
@@ -70,6 +70,6 @@ export default ({navigation, route}) => {
         />
         <AuthButton loading={loading} text={'Log In'} onPress={handleLogin} />
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableWithoutFeedback> 
   );
 };
