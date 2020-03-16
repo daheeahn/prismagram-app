@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import useInput from '../../hooks/useInput';
 import {gql} from 'apollo-boost';
 import {useQuery} from 'react-apollo-hooks';
+import Loader from '../../components/Loader';
+import SquarePhoto from '../../components/SquarePhoto';
 
 export const SEARCH = gql`
   query search($term: String!) {
@@ -36,6 +38,7 @@ const Search = ({navigation, route}) => {
   const {loading, data, refetch} = useQuery(SEARCH, {
     variables: {term: term.current},
     skip: shouldFetch === false, // useEffect보다 좋은 방법!
+    fetchPolicy: 'network-only', // 검색할 때마다 네트워크에 요청. 캐시에 저장된거 받아오지 않고! // 캐시에서 받아오고 싶지 않을 때
   });
   console.log('SEARCH', loading, data);
 
@@ -84,9 +87,14 @@ const Search = ({navigation, route}) => {
       refreshControl={
         <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
       }>
-      <View>
-        <Text>Search</Text>
-      </View>
+      {loading ? (
+        <Loader />
+      ) : (
+        data?.searchPost?.map(post => {
+          console.log(post);
+          return <SquarePhoto key={post.id} {...post} />;
+        })
+      )}
     </ScrollView>
   );
 };

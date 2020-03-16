@@ -6,6 +6,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {stackStyles} from '../config';
 import styles from '../../utils/styles';
+import Detail from '../../screens/Detail';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ const HomeStackFactory = ({navigation}) => (
         headerTitle: <NavIcon name={'logo-instagram'} size={36} />,
       }}
     />
+    <Stack.Screen name="Detail" component={Detail} />
   </Stack.Navigator>
 );
 

@@ -2,6 +2,7 @@ import Notifications from '../../screens/Tabs/Notifications';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {stackStyles} from '../config';
+import Detail from '../../screens/Detail';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ const NotiStackFactory = () => (
       headerStyle: {...stackStyles},
     }}>
     <Stack.Screen name="Notifications" component={Notifications} />
+    <Stack.Screen name="Detail" component={Detail} />
   </Stack.Navigator>
 );
 

@@ -1,12 +1,21 @@
 import {Alert, RefreshControl, ScrollView} from 'react-native';
 import React, {useState} from 'react';
 
-import {FEED_QUERY} from './HomeQueries';
 import Loader from '../../components/Loader';
 import Post from '../../components/Post';
 import styled from 'styled-components';
-// import {useQuery} from '@apollo/react-hooks';
 import {useQuery} from 'react-apollo-hooks';
+import {gql} from 'apollo-boost';
+import {POST_FRAGMENT} from '../../utils/fragment';
+
+export const FEED_QUERY = gql`
+  {
+    seeFeed {
+      ...PostParts
+    }
+  }
+  ${POST_FRAGMENT}
+`;
 
 const View = styled.View`
   flex: 1;

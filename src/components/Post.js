@@ -9,6 +9,7 @@ import {gql} from 'apollo-boost';
 import styled from 'styled-components';
 import styles from '../utils/styles';
 import {useMutation} from 'react-apollo-hooks';
+import {imgToReplace} from '../utils/utils';
 
 const TOGGLE_LIKE = gql`
   mutation toggleLike($postId: String!) {
@@ -118,6 +119,7 @@ const Post = ({
         style={{height: constants.height / 2.5}}>
         {/* {files.map(file => { */}
         {loves.map((file, index) => {
+          console.log('file', file);
           return (
             <Image
               //   key={file.id}
