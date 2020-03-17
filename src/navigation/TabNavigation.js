@@ -30,7 +30,7 @@ const Stack = createStackNavigator();
 
 const TabNavigation = ({navigation}) => (
   <Tab.Navigator
-    initialRouteName="SearchStackFactory"
+    initialRouteName="ProfileStackFactory"
     headerMode={'none'}
     tabBarOptions={{
       showLabel: false,

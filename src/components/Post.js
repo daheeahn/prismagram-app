@@ -100,7 +100,7 @@ const Post = ({
               borderRadius: 20,
               backgroundColor: 'black',
             }}
-            source={{uri: user.avatar}}
+            source={{uri: user.avartar}}
           />
         </Touchable>
         <Touchable>
@@ -119,7 +119,6 @@ const Post = ({
         style={{height: constants.height / 2.5}}>
         {/* {files.map(file => { */}
         {loves.map((file, index) => {
-          console.log('file', file);
           return (
             <Image
               //   key={file.id}
@@ -181,7 +180,7 @@ Post.propTypes = {
   id: PropTypes.string.isRequired,
   user: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    avatar: PropTypes.string,
+    avartar: PropTypes.string,
     username: PropTypes.string.isRequired,
   }).isRequired,
   files: PropTypes.arrayOf(
