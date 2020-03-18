@@ -5,23 +5,53 @@ import UploadPhoto from '../screens/Photo/UploadPhoto';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {stackStyles} from './config';
+import styles from '../utils/styles';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 
 const PhotoTabs = () => (
   <Tab.Navigator
-    initialRouteName="TakePhoto"
-    headerMode={'none'}
-    tabBarPosition={'bottom'}>
-    <Tab.Screen name="SelectPhoto" component={SelectPhoto} />
-    <Tab.Screen name="TakePhoto" component={TakePhoto} />
+    initialRouteName="SelectPhoto"
+    tabBarPosition={'bottom'}
+    tabBarOptions={{
+      indicatorStyle: {
+        backgroundColor: styles.black,
+        marginBottom: 20,
+      },
+      labelStyle: {
+        color: styles.black,
+        fontWeight: '600',
+      },
+      style: {
+        ...stackStyles,
+        paddingBottom: 20,
+      },
+    }}>
+    <Tab.Screen
+      name="SelectPhoto"
+      component={SelectPhoto}
+      options={{
+        tabBarLabel: 'Select',
+      }}
+    />
+    <Tab.Screen
+      name="TakePhoto"
+      component={TakePhoto}
+      options={{
+        tabBarLabel: 'Take',
+      }}
+    />
   </Tab.Navigator>
 );
 
 const PhotoNavigation = () => (
   <Stack.Navigator screenOptions={{headerStyle: {...stackStyles}}}>
-    <Stack.Screen name="PhotoTabs" component={PhotoTabs} />
+    <Stack.Screen
+      name="PhotoTabs"
+      component={PhotoTabs}
+      options={{headerShown: false}}
+    />
     <Stack.Screen name="UploadPhoto" component={UploadPhoto} />
   </Stack.Navigator>
 );

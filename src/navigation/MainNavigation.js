@@ -9,7 +9,7 @@ const Stack = createStackNavigator();
 
 const MainNavigation = () => (
   <Stack.Navigator
-    initialRouteName="TabNavigation"
+    initialRouteName="PhotoNavigation"
     mode={'modal'} // only iOS
     headerMode={'none'}
     screenOptions={{headerStyle: {...stackStyles}}}>

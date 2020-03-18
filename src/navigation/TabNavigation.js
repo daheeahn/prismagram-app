@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator();
 
 const TabNavigation = ({navigation}) => (
   <Tab.Navigator
-    initialRouteName="ProfileStackFactory"
+    initialRouteName="HomeStackFactory"
     headerMode={'none'}
     tabBarOptions={{
       showLabel: false,
