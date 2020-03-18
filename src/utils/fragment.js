@@ -19,13 +19,13 @@ export const POST_FRAGMENT = gql`
     comments {
       id
       text
-      user {
-        id
-        username
-      }
+      # user {
+      #   ...UserParts
+      # }
     }
     createdAt
   }
+  # ${USER_FRAGMENT}
 `;
 
 export const USER_FRAGMENT = gql`

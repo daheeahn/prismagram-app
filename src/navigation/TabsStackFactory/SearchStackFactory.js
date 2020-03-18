@@ -3,6 +3,7 @@ import Search from '../../screens/Tabs/Search';
 import {createStackNavigator} from '@react-navigation/stack';
 import {stackStyles} from '../config';
 import Detail from '../../screens/Detail';
+import UserDetail from '../../screens/UserDetail';
 import styles from '../../utils/styles';
 
 const Stack = createStackNavigator();
@@ -20,6 +21,15 @@ const SearchStackFactory = () => (
       name="Detail"
       component={Detail}
       options={{headerTintColor: styles.black, headerTitle: 'Post'}}
+    />
+    <Stack.Screen
+      name="UserDetail"
+      component={UserDetail}
+      options={{
+        headerTitle: 'User',
+        headerBackTitle: ' ',
+        headerTintColor: styles.black,
+      }}
     />
   </Stack.Navigator>
 );

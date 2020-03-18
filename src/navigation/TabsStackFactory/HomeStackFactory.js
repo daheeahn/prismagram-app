@@ -7,6 +7,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {stackStyles} from '../config';
 import styles from '../../utils/styles';
 import Detail from '../../screens/Detail';
+import UserDetail from '../../screens/UserDetail';
 
 const Stack = createStackNavigator();
 
@@ -21,13 +22,21 @@ const HomeStackFactory = ({navigation}) => (
     <Stack.Screen
       name="Home"
       component={Home}
-      headerTitle
       options={{
         headerRight: () => <MessageLink />,
         headerTitle: <NavIcon name={'logo-instagram'} size={36} />,
       }}
     />
     <Stack.Screen name="Detail" component={Detail} />
+    <Stack.Screen
+      name="UserDetail"
+      component={UserDetail}
+      options={{
+        headerTitle: 'User',
+        headerBackTitle: ' ',
+        headerTintColor: styles.black,
+      }}
+    />
   </Stack.Navigator>
 );
 

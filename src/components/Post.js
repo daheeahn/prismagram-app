@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import styles from '../utils/styles';
 import {useMutation} from 'react-apollo-hooks';
 import {imgToReplace} from '../utils/utils';
+import {withNavigation} from '@react-navigation/compat';
 
 const TOGGLE_LIKE = gql`
   mutation toggleLike($postId: String!) {
@@ -66,6 +67,7 @@ const Post = ({
   caption,
   comments = [],
   isLiked: isLikedProp,
+  navigation,
 }) => {
   const [toggleLikeMutation] = useMutation(TOGGLE_LIKE, {
     variables: {postId: id},
@@ -92,7 +94,10 @@ const Post = ({
   return (
     <Container>
       <Header>
-        <Touchable>
+        <Touchable
+          onPress={() =>
+            navigation.navigate('UserDetail', {username: user.username})
+          }>
           <Image
             style={{
               height: 40,
@@ -100,10 +105,17 @@ const Post = ({
               borderRadius: 20,
               backgroundColor: 'black',
             }}
-            source={{uri: user.avartar}}
+            // source={{uri: user?.avartar}}
+            source={{
+              uri:
+                'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB10b34H.img?h=0&w=720&m=6&q=60&u=t&o=f&l=f&x=235&y=138',
+            }}
           />
         </Touchable>
-        <Touchable>
+        <Touchable
+          onPress={() =>
+            navigation.navigate('UserDetail', {username: user.username})
+          }>
           <HeaderUserContainer>
             <Bold>{user.username}</Bold>
             <Location>{location}</Location>
@@ -198,12 +210,12 @@ Post.propTypes = {
       user: PropTypes.shape({
         id: PropTypes.string.isRequired,
         username: PropTypes.string.isRequired,
-      }).isRequired,
+      }),
     }),
   ).isRequired,
   caption: PropTypes.string.isRequired,
   location: PropTypes.string,
-  createdAt: PropTypes.string.isRequired,
+  createdAt: PropTypes.string,
 };
 
-export default Post;
+export default withNavigation(Post);
