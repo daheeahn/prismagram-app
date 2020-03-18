@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 
 const PhotoTabs = () => (
   <Tab.Navigator
-    initialRouteName="SelectPhoto"
+    initialRouteName="TakePhoto"
     tabBarPosition={'bottom'}
     tabBarOptions={{
       indicatorStyle: {
