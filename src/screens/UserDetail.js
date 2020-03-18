@@ -16,9 +16,10 @@ const GET_USER = gql`
   ${USER_FRAGMENT}
 `;
 
-const Detail = () => {
+const UserDetail = () => {
   const route = useRoute();
   const username = route.params.username;
+  console.log('UserDetail', username);
 
   const {loading, data} = useQuery(GET_USER, {
     variables: {username},
@@ -36,4 +37,4 @@ const Detail = () => {
     </ScrollView>
   );
 };
-export default Detail;
+export default UserDetail;

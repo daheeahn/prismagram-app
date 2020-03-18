@@ -3,12 +3,15 @@ import {Image} from 'react-native';
 import MessageLink from '../../components/MessageLink';
 import NavIcon from '../../components/NavIcon';
 import React from 'react';
+import {createNavigatorFactory} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {stackStyles} from '../config';
 import styles from '../../utils/styles';
+import {userDetailOption} from './options';
 import Detail from '../../screens/Detail';
-import UserDetail from '../../screens/UserDetail';
 
+import UserDetail from '../../screens/UserDetail';
+// import {StackFactory} from '../TabNavigation'
 const Stack = createStackNavigator();
 
 // TODO: 이 짓을 stackFactory마다 안해줄 수 없어?
@@ -31,11 +34,7 @@ const HomeStackFactory = ({navigation}) => (
     <Stack.Screen
       name="UserDetail"
       component={UserDetail}
-      options={{
-        headerTitle: 'User',
-        headerBackTitle: ' ',
-        headerTintColor: styles.black,
-      }}
+      options={userDetailOption}
     />
   </Stack.Navigator>
 );

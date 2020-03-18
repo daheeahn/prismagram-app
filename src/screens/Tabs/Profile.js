@@ -25,14 +25,12 @@ export const ME = gql`
 const Text = styled.Text``;
 
 export default ({navigation}) => {
-  const {loading, data} = useQuery(ME, {
-    fetchPolicy: 'network-only',
-  });
+  const {loading, data} = useQuery(ME);
   console.log('Profile me', loading, data);
 
   return (
     <ScrollView>
-      {/* {loading ? <Loader /> : data?.me && <UserProfile {...data.me} />} */}
+      {loading ? <Loader /> : data?.me && <UserProfile {...data.me} />}
     </ScrollView>
   );
 };

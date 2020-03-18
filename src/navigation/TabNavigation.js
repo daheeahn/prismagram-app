@@ -1,36 +1,19 @@
-import {Platform, Text, View} from 'react-native';
+import {Platform, View} from 'react-native';
 
-import HomeStackFactory from './TabsStackFactory/HomeStackFactory';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import NavIcon from '../components/NavIcon';
+import HomeStackFactory from './TabsStackFactory/HomeStackFactory';
 import NotiStackFactory from './TabsStackFactory/NotiStackFactory';
 import ProfileStackFactory from './TabsStackFactory/ProfileStackFactory';
 import React from 'react';
 import SearchStackFactory from './TabsStackFactory/SearchStackFactory';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createStackNavigator} from '@react-navigation/stack';
 import styles from '../utils/styles';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
-
-// TODO: 이렇게 일반화 시킬 수 없는거야?
-// const stackFactory = (initialRouteName, component) => {
-//   console.log(initialRouteName, component);
-//   return (
-//     <Stack.Navigator initialRouteName={initialRouteName}>
-//       <Stack.Screen
-//         name={initialRouteName} // TODO: ok?
-//         component={component}
-//         // options={{...customConfig}}
-//       />
-//     </Stack.Navigator>
-//   );
-// };
 
 const TabNavigation = ({navigation}) => (
   <Tab.Navigator
-    initialRouteName="HomeStackFactory"
+    initialRouteName="ProfileStackFactory"
     headerMode={'none'}
     tabBarOptions={{
       showLabel: false,

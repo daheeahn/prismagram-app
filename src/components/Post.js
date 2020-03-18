@@ -9,7 +9,7 @@ import {gql} from 'apollo-boost';
 import styled from 'styled-components';
 import styles from '../utils/styles';
 import {useMutation} from 'react-apollo-hooks';
-import {imgToReplace} from '../utils/utils';
+import {seulJJo} from '../utils/utils';
 import {withNavigation} from '@react-navigation/compat';
 
 const TOGGLE_LIKE = gql`
@@ -107,8 +107,7 @@ const Post = ({
             }}
             // source={{uri: user?.avartar}}
             source={{
-              uri:
-                'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB10b34H.img?h=0&w=720&m=6&q=60&u=t&o=f&l=f&x=235&y=138',
+              uri: seulJJo,
             }}
           />
         </Touchable>

@@ -5,6 +5,7 @@ import {stackStyles} from '../config';
 import Detail from '../../screens/Detail';
 import UserDetail from '../../screens/UserDetail';
 import styles from '../../utils/styles';
+import {userDetailOption} from './options';
 
 const Stack = createStackNavigator();
 
@@ -25,11 +26,7 @@ const SearchStackFactory = () => (
     <Stack.Screen
       name="UserDetail"
       component={UserDetail}
-      options={{
-        headerTitle: 'User',
-        headerBackTitle: ' ',
-        headerTintColor: styles.black,
-      }}
+      options={userDetailOption}
     />
   </Stack.Navigator>
 );
