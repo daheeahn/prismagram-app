@@ -101,5 +101,9 @@
 	<string>fbauth2</string>
 	<string>fbshareextension</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+  	<string>Camera를 사용합니다</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+  	<string>갤러리를 사용합니다</string>
 </dict>
 </plist>

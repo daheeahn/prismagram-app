@@ -50,7 +50,10 @@ const PhotoNavigation = () => (
     <Stack.Screen
       name="PhotoTabs"
       component={PhotoTabs}
-      options={{headerShown: false}}
+      options={{
+        // headerShown: false,
+        headerTitle: 'Choose Photo',
+      }}
     />
     <Stack.Screen name="UploadPhoto" component={UploadPhoto} />
   </Stack.Navigator>

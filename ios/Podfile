@@ -35,6 +35,8 @@ target 'prismagramApp' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'Permission-Camera', :path => "../node_modules/react-native-permissions/ios/Camera.podspec"
+  pod 'Permission-PhotoLibrary', :path => "../node_modules/react-native-permissions/ios/PhotoLibrary.podspec"
   
   target 'prismagramAppTests' do
     inherit! :search_paths

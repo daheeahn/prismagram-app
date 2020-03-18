@@ -64,7 +64,7 @@ const App = ({navigation}) => {
       setClient(client);
     } catch (error) {
       Alert.alert('error!');
-      console.log(error);
+      console.log('🚫', error);
     }
   };
 

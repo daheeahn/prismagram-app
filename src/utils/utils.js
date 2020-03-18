@@ -3,3 +3,7 @@ export const imgToReplace =
 
 export const seulJJo =
   'https://img-s-msn-com.akamaized.net/tenant/amp/entityid/BB10b34H.img?h=0&w=720&m=6&q=60&u=t&o=f&l=f&x=235&y=138';
+
+export const logErr = (message, error) => {
+  console.log(`💢${message}`, error);
+};

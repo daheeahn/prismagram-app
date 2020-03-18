@@ -37,10 +37,14 @@ export default ({navigation, route}) => {
 
     try {
       setLoading(true);
+      console.log('🚼');
+
       const {
         data: {requestSecret},
       } = await requestSecretMutation();
-      
+
+      console.log('2', requestSecret);
+
       if (requestSecret) {
         Alert.alert('Check your email');
         navigation.navigate('Confirm', {email: value, requestSecret});
@@ -70,6 +74,6 @@ export default ({navigation, route}) => {
         />
         <AuthButton loading={loading} text={'Log In'} onPress={handleLogin} />
       </View>
-    </TouchableWithoutFeedback> 
+    </TouchableWithoutFeedback>
   );
 };
