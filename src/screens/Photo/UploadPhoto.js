@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {Image} from 'react-native';
 
 const View = styled.View`
   flex: 1;
@@ -9,10 +10,12 @@ const View = styled.View`
 
 const Text = styled.Text``;
 
-export default () => {
+export default ({navigation, route}) => {
+  const {photo} = route.params;
   return (
     <View>
-      <Text>Upload Photo</Text>
+      <Text>Upload Photo {photo}</Text>
+      <Image source={{uri: photo}} style={{width: 100, height: 100}} />
     </View>
   );
 };

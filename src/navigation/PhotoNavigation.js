@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 
 const PhotoTabs = () => (
   <Tab.Navigator
-    initialRouteName="TakePhoto"
+    initialRouteName="SelectPhoto"
     tabBarPosition={'bottom'}
     tabBarOptions={{
       indicatorStyle: {
@@ -55,7 +55,11 @@ const PhotoNavigation = () => (
         headerTitle: 'Choose Photo',
       }}
     />
-    <Stack.Screen name="UploadPhoto" component={UploadPhoto} />
+    <Stack.Screen
+      name="UploadPhoto"
+      component={UploadPhoto}
+      options={{headerBackTitle: ' ', headerTintColor: styles.black}}
+    />
   </Stack.Navigator>
 );
 

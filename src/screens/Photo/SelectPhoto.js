@@ -6,13 +6,29 @@ import {logErr, imgToReplace, seulJJo} from '../../utils/utils';
 import CameraRoll from '@react-native-community/cameraroll';
 import {Image, ScrollView, TouchableOpacity} from 'react-native';
 import constants from '../../utils/constants';
+import styles from '../../utils/styles';
+
 const View = styled.View`
   flex: 1;
 `;
 
-const Text = styled.Text``;
+const Button = styled.TouchableOpacity`
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  width: 120px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: ${styles.blue};
+  justify-content: center;
+  align-items: center;
+`;
 
-export default () => {
+const Text = styled.Text`
+  color: white;
+`;
+
+export default ({navigation}) => {
   const [loading, setLoading] = useState(true);
   const [hasPermission, setHasPermission] = useState(false);
   const [selected, setSelected] = useState(null);
@@ -20,8 +36,6 @@ export default () => {
   const changeSelected = photo => {
     setSelected(photo);
   };
-
-  console.log('selected', selected);
 
   const getPhotos = async () => {
     try {
@@ -61,6 +75,11 @@ export default () => {
     }
   };
 
+  const handleSelected = () => {
+    console.log('😷 selected', selected);
+    navigation.navigate('UploadPhoto', {photo: selected.image.uri});
+  };
+
   useEffect(() => {
     askPermission();
   }, []);
@@ -77,6 +96,9 @@ export default () => {
                 source={{uri: selected.image.uri || seulJJo}}
                 style={{width: constants.width, height: constants.height / 2}}
               />
+              <Button onPress={handleSelected}>
+                <Text>Select Photo</Text>
+              </Button>
               <ScrollView contentContainerStyle={{flexDirection: 'row'}}>
                 {allPhotos.map((photo, index) => {
                   return (
