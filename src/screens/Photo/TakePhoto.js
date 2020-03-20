@@ -48,7 +48,7 @@ export default ({navigation}) => {
         if (data) {
           const uri = await CameraRoll.saveToCameraRoll(data.uri);
           console.log('🐤result', uri);
-          navigation.navigate('UploadPhoto', {photo: uri});
+          navigation.navigate('UploadPhoto', {photo: data});
         }
       }
     } catch (error) {
